@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import './form.scss';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form ,Card} from 'react-bootstrap';
 
 
 const TodoForm = (props) => {
@@ -21,8 +21,9 @@ const TodoForm = (props) => {
     return (
       <>
         <h3>Add Item</h3>
+        <Card>
         <Form onSubmit={handleSubmit}>
-          <Form.Group>
+        
           <Form.Label>
             <span>To Do Item</span>
             </Form.Label>
@@ -30,22 +31,20 @@ const TodoForm = (props) => {
               name="text"
               placeholder="Add To Do List Item"
               onChange={handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
+              />
+          <br></br>
+        
           <Form.Label>
             <span>Difficulty Rating</span>
           </Form.Label>
             <Form.Control defaultValue="1" type="range" min="1" max="5" name="difficulty" onChange={handleInputChange} />
-          </Form.Group>
-          <Form.Group>
+          
+            <br></br>
           <Form.Label>
             <span>Assigned To</span>
           </Form.Label>
-            <Form.Control type="text" name="assignee" placeholder="Assigned To" onChange={handleInputChange} />
-          </Form.Group>
-
-          <Form.Group controlId="formBasicEmail">
+          <Form.Control type="text" name="assignee" placeholder="Assigned To" onChange={handleInputChange} />
+            <br></br>
           <Form.Label> Due Date </Form.Label>
           <Form.Control
             size="sm"
@@ -54,10 +53,24 @@ const TodoForm = (props) => {
             placeholder="Date"
             onChange={handleInputChange}
           />
-        </Form.Group>
-
+        
+        <br></br>
           <Button type="submit" variant="primary">Add Item</Button>
         </Form>
+        </Card>
+
+        {/* <Form.Group onSubmit={handleSubmit}>
+          <Form.Label><span>To Do Item</span></Form.Label>
+          <Form.Control 
+          name="text"
+          placeholder="Add To Do List Item"
+          onChange={handleInputChange} />
+            <br />
+          <Form.Control type="text" placeholder="Normal text" />
+          <br />
+           <Form.Control size="sm" type="text" placeholder="Small text" />
+        </Form.Group>
+         */}
       </>
     );
 }

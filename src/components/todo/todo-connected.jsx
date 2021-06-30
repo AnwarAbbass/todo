@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import TodoForm from './form';
 import TodoList from './list';
 import './todo.scss';
@@ -9,7 +9,7 @@ import useAjax from '../hook/ajax'
 
 const ToDo = () => {
 
-  const [_addItem, _toggleComplete, list, setList, deleteItem, editItem] = useAjax();
+  const [_addItem, _toggleComplete, list, setList, deleteItem,editItem] = useAjax();
 
 
   useEffect(() => {
@@ -23,8 +23,15 @@ const ToDo = () => {
   const deleteTaskHanle = (id)=>{
     let listContent = list.filter(item=>item._id !== id);
     deleteItem(id);
+    console.log('sssssssss');
     setList(listContent);
   }
+
+  const edithandle = (obj) => {
+    let listContent = list.filter(item=>item._id !== obj._id);
+    editItem(obj);
+    setList(listContent);
+  };
 
   return (
     <>
@@ -45,7 +52,7 @@ const ToDo = () => {
             list={list}
             handleComplete={_toggleComplete}
             handleDelete = {deleteTaskHanle}
-            handleUpdate = {editItem}
+            handleUpdate = {edithandle}
           />
         </div>
       </section>

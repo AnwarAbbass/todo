@@ -1,10 +1,10 @@
-import { useState,useEffect } from "react";
+import { useEffect,useState } from "react";
 
 const todoAPI = 'https://api-js401.herokuapp.com/api/v1/todo';
 
 const useAjax = ()=>{
 
-  const [list, setList ] = useAjax();
+  const [list, setList ] = useState([]);
 
   const _addItem = (item) => {
     item.due = new Date();
@@ -58,6 +58,7 @@ const useAjax = ()=>{
   };
 
   const deleteItem = (id) => {
+    console.log('tttttttttt');
     fetch(todoAPI+`/${id}`, {
       method: 'delete',
       mode: 'cors',
@@ -81,7 +82,7 @@ const useAjax = ()=>{
     }).catch(console.error);
   };
 
-  useEffect(_getTodoItems, []);
+  useEffect(_getTodoItems, [setList]);
 
   return [_addItem, _toggleComplete, list, setList, deleteItem,editItem];
 }
