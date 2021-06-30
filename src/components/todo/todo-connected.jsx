@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useContext } from 'react';
 import TodoForm from './form';
 import TodoList from './list';
 import './todo.scss';
-import useAjax from '../hook/ajax'
+import { userContext } from '../context';
+import useAjax from '../hook/ajax';
 
 // const todoAPI = 'https://api-js401.herokuapp.com/api/v1/todo';
 
 
 const ToDo = () => {
-
-  const [_addItem, _toggleComplete, list, setList, deleteItem,editItem] = useAjax();
+  const contextSettings = useContext(userContext);
+  const [_addItem, _toggleComplete, list, setList, deleteItem,editItem,prevPage,nextPage,screen,next] = useAjax();
 
 
   useEffect(() => {
