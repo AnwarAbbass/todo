@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import {Container,Col,Row,Card} from 'react-bootstrap';
 import TodoForm from './form';
 import TodoList from './list';
 
-import './todo.scss';
+// import './todo.scss';
 
 const ToDo =(props)=> {
     const [list,listSet] = useState([]);
@@ -53,19 +54,24 @@ const ToDo =(props)=> {
           </h2>
         </header>
 
-        <section className="todo">
-
-          <div>
+        <Container>
+        <Row className="justify-content-md-center">
+          <Col>
+           <Card >
             <TodoForm handleSubmit={addItem} />
-          </div>
+           </Card>
+          </Col>
 
-          <div>
+          <Col>
+          <Card></Card>
             <TodoList
               list={list}
               handleComplete={toggleComplete}
             />
-          </div>
-        </section>
+          </Col>
+        </Row>
+        </Container>
+
       </>
     );
   }
