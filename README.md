@@ -13,4 +13,4 @@
 ![](https://github.com/AnwarAbbass/todo/blob/master/react%20(3).png?raw=true)
 
 ## Deploy
-![netlyfy]()
+![netlyfy](https://gallant-turing-c8af29.netlify.app/)
