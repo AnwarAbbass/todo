@@ -32,10 +32,12 @@ const TodoForm = (props) => {
               onChange={handleInputChange}
             />
           </Form.Label>
+          <br></br>
           <Form.Label>
             <Form.Text>Difficulty Rating</Form.Text>
             <Form.Control defaultValue="1" type="range" min="1" max="5" name="difficulty" onChange={handleInputChange} />
           </Form.Label>
+          <br></br>
           <Form.Label>
             <Form.Text>Assigned To</Form.Text>
             <Form.Control type="text" name="assignee" placeholder="Assigned To" onChange={handleInputChange} />

@@ -54,20 +54,22 @@ const ToDo =(props)=> {
           </h2>
         </header>
 
-        <Container>
-        <Row className="justify-content-md-center">
-          <Col>
+        <Container fluid="md" style={{ marginTop: '4rem' }}>
+        <Row>
+          <Col md={5}>
            <Card >
             <TodoForm handleSubmit={addItem} />
            </Card>
           </Col>
 
-          <Col>
-          <Card></Card>
+          <Col md={5}>
+          {/* <Card> */}
+
             <TodoList
               list={list}
               handleComplete={toggleComplete}
             />
+          {/* </Card> */}
           </Col>
         </Row>
         </Container>
