@@ -3,7 +3,6 @@ import {Container,Col,Row,Card} from 'react-bootstrap';
 import TodoForm from './form';
 import TodoList from './list';
 
-// import './todo.scss';
 
 const ToDo =(props)=> {
     const [list,listSet] = useState([]);
