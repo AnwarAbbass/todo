@@ -11,3 +11,6 @@
 - As a user, I would like to edit an existing to do item
 ## uml
 ![](https://github.com/AnwarAbbass/todo/blob/master/react%20(3).png?raw=true)
+
+## Deploy
+![netlyfy](https://gallant-turing-c8af29.netlify.app/)

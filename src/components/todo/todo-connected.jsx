@@ -23,13 +23,13 @@ const ToDo = () => {
   const deleteTaskHanle = (id)=>{
     let listContent = list.filter(item=>item._id !== id);
     deleteItem(id);
-    console.log('sssssssss');
+    console.log('deleteTaskHanle',list);
     setList(listContent);
   }
 
   const edithandle = (obj) => {
-    let listContent = list.filter(item=>item._id !== obj._id);
     editItem(obj);
+    let listContent = list.filter(item=>item._id !== obj._id);
     setList(listContent);
   };
 
@@ -37,6 +37,7 @@ const ToDo = () => {
     <>
       <header>
         <h2>
+          {console.log('connected 40',list)}
           There are {list.filter(item => !item.complete).length} Items To Complete
         </h2>
       </header>
