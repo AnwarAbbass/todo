@@ -10,6 +10,7 @@ const TodoList = (props) => {
   const [id, setId] = useState("");
   const [start, setstart] = useState(0);
   const [end, setend] = useState(3);
+  const [n, nset] = useState(3);
 
   const deleteHandler = (e) => {
     const id = e.target.value;
@@ -40,12 +41,15 @@ const TodoList = (props) => {
     setUpdate(!isUpdate);
   };
 
+  const updateNumber = (e) => {
+    nset(e.target.value);
+  };
+
   return (
     <>
-    <Form onSubmit={}>
-      <Form.Label>How Many Item You Want to see ?</Form.Label>
-      <Form.
-    </Form>
+      <Form onSubmit={updateNumber}>
+        <Form.Label>How Many Item You Want to see ?</Form.Label>
+      </Form>
       <ListGroup>
         {props.list.slice(start, end).map((item) => (
           <>
@@ -116,34 +120,35 @@ const TodoList = (props) => {
       </ListGroup>
       <Button
         onClick={(e) => {
-          let renderNumber=Math.ceil(props.list.length/3)
-          if(start<end && start>0){
-            setend(start );
-            if(start-renderNumber>-1) setstart(start-renderNumber);
-            else setstart(0)
-          }
-          else {
+          let renderNumber = Math.ceil(props.list.length / n);
+          if (start < end && start > 0) {
+            setend(start);
+            if (start - renderNumber > -1) setstart(start - renderNumber);
+            else setstart(0);
+          } else {
             setstart(start);
-            setend(end);}
-          console.log(Math.ceil(props.list.length/3));
+            setend(end);
+          }
+          console.log(Math.ceil(props.list.length / n));
         }}
-        >
-        {console.log(start,end,props.list.length)}
+      >
+        {console.log(start, end, props.list.length)}
         Previous
       </Button>
       <Button
         onClick={(e) => {
-          let renderNumber=Math.ceil(props.list.length/3)
-          if(start<end && end<props.list.length){
+          let renderNumber = Math.ceil(props.list.length / n);
+          if (start < end && end < props.list.length) {
             setstart(end);
-            setend(end +renderNumber);}
-          else {
+            setend(end + renderNumber);
+          } else {
             setstart(start);
-            setend(end);}
-          console.log(Math.ceil(props.list.length/3));
+            setend(end);
+          }
+          console.log(Math.ceil(props.list.length / n));
         }}
-        >
-        {console.log(start,end,props.list.length)}
+      >
+        {console.log(start, end, props.list.length)}
         Next
       </Button>
     </>
