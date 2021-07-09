@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Settings from "./components/context.js";
 import ToDo from './components/todo/todo-connected';
 import Header from './components/header/header'
 import Footer from './components/footer/footer'
@@ -9,6 +9,7 @@ export default class App extends React.Component {
   render() {
     return (
       <>
+
       <Header/>    
 
         <ToDo />
