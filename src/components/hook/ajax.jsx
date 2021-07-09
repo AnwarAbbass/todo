@@ -1,5 +1,8 @@
 import { useEffect,useState, useContext} from "react";
 import { userContext } from '../context';
+
+import axios from 'axios';
+
 const todoAPI = 'https://api-js401.herokuapp.com/api/v1/todo';
 
 let next = true;
@@ -31,76 +34,76 @@ const useAjax = ()=>{
 
   const _addItem = (item) => {
     item.due = new Date();
-    fetch(todoAPI, {
+    axios({
+      url:todoAPI,
       method: 'post',
       mode: 'cors',
       cache: 'no-cache',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(item)
-    })
-      .then(response => response.json())
-      .then(savedItem => {
-        setList([...list, savedItem])
-      })
-      .catch(console.error);
+      data: item
+    }).then(res => {
+      console.log(res.data);
+      setList([...list, res.data])})
   };
 
-  const _toggleComplete = id => {
-
-    let item = list.filter(i => i._id === id)[0] || {};
-
+  const _toggleComplete = (id) => {
+    let item = list.filter((i) => i._id === id)[0] || {};
     if (item._id) {
-
       item.complete = !item.complete;
 
       let url = `${todoAPI}/${id}`;
 
-      fetch(url, {
-        method: 'put',
-        mode: 'cors',
-        cache: 'no-cache',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(item)
+      axios(url, {
+        method: "put",
+        mode: "cors",
+        cache: "no-cache",
+        headers: { "Content-Type": "application/json" },
+        data: item,
       })
-        .then(response => response.json())
-        .then(savedItem => {
-          setList(list.map(listItem => listItem._id === item._id ? savedItem : listItem));
+        .then((savedItem) => {
+          console.log('39 ajax', savedItem.data);
+          setList(
+            list.map((listItem) =>
+              listItem._id === item._id ? savedItem.data : listItem
+            )
+          );
         })
         .catch(console.error);
     }
   };
 
   const _getTodoItems = () => {
-    fetch(todoAPI, {
+    
+    axios({url:todoAPI, 
       method: 'get',
       mode: 'cors',
     })
-      .then(data => data.json())
-      .then(data => setList(data.results))
+      .then(data => setList(data.data.results))
       .catch(console.error);
   };
-
-  const deleteItem = (id) => {
+  
+  const deleteItem = async(id) => {
+    let url = `${todoAPI}/${id}`;
     console.log('tttttttttt');
-    fetch(todoAPI+`/${id}`, {
+    await axios({url:url, 
       method: 'delete',
       mode: 'cors',
     })
-      .then(data => data.json())
-      .catch(console.error);
   };
 
   const editItem = (item) => {
-    fetch(todoAPI+`/${item._id}`, {
+    let url = `${todoAPI}/${item._id}`;
+    console.log('----------------',item);
+    axios({url:url, 
       method: 'put',
       mode: 'cors',
-      body: JSON.stringify(item),
+      data: item,
     })
-    .then((res) => res.json())
     .then((newItem) => {
+      console.log('------------------ ajax 78',newItem.data);
       setList(
         list.map((listItem) =>
-          listItem._id === item._id ? newItem : listItem
+          listItem._id === item._id ? newItem.data : listItem
         ));
     }).catch(console.error);
   };
