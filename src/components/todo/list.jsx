@@ -42,6 +42,10 @@ const TodoList = (props) => {
 
   return (
     <>
+    <Form onSubmit={}>
+      <Form.Label>How Many Item You Want to see ?</Form.Label>
+      <Form.
+    </Form>
       <ListGroup>
         {props.list.slice(start, end).map((item) => (
           <>
