@@ -9,8 +9,8 @@ const TodoList = (props) => {
   const [isUpdate, setUpdate] = useState(false);
   const [id, setId] = useState("");
   const [start, setstart] = useState(0);
-  const [end, setend] = useState(3);
   const [n, nset] = useState(3);
+  const [end, setend] = useState(n);
 
   const deleteHandler = (e) => {
     const id = e.target.value;
@@ -42,18 +42,25 @@ const TodoList = (props) => {
   };
 
   const updateNumber = (e) => {
-    nset(e.target.value);
+    e.preventDefault();
+
+    // console.log("fffffffffffffffff", typeof Number( e.target.number.value));
+    nset(Number(e.target.number.value));
+    setend(Number(e.target.number.value));
+    e.target.reset();
   };
 
   return (
     <>
       <Form onSubmit={updateNumber}>
         <Form.Label>How Many Item You Want to see ?</Form.Label>
+        <Form.Control name="number" />
+        <Button type="submit">Change</Button>
       </Form>
       <ListGroup>
         {props.list.slice(start, end).map((item) => (
           <>
-            {console.log("50 ---------------", item.complete)}
+            {console.log("50 ---------------", start, end, n)}
             <ListGroup.Item
               onClick={() => props.handleComplete(item._id)}
               className={`complete-${item.complete}`}
@@ -123,7 +130,7 @@ const TodoList = (props) => {
           let renderNumber = Math.ceil(props.list.length / n);
           if (start < end && start > 0) {
             setend(start);
-            if (start - renderNumber > -1) setstart(start - renderNumber);
+            if (start - renderNumber > -1) setstart(start - renderNumber - 1);
             else setstart(0);
           } else {
             setstart(start);
