@@ -1,36 +1,10 @@
-import { useEffect,useState, useContext} from "react";
-import { userContext } from '../context';
-
+import { useEffect,useState } from "react";
 import axios from 'axios';
-
 const todoAPI = 'https://api-js401.herokuapp.com/api/v1/todo';
 
-let next = true;
-let oldList ;
 const useAjax = ()=>{
-  const contextSettings = useContext(userContext);
+
   const [list, setList ] = useState([]);
-
-  let screen = list.slice(0, contextSettings.itemPerScreen);
-
-  function nextPage(e) {
-    if (next) {
-      oldList = list;
-      next = !next;
-    }
-    screen = list.slice(contextSettings.itemPerScreen);
-    setList(screen);
-  }
-
-  function prevPage(e) {
-    screen = oldList.slice(0);
-    setList(screen);
-    next = !next;
-  }
-
-  list.sort((first, secound) => {
-    return first[contextSettings.sortOn] - secound[contextSettings.sortOn];
-  });
 
   const _addItem = (item) => {
     item.due = new Date();
@@ -84,7 +58,6 @@ const useAjax = ()=>{
   
   const deleteItem = async(id) => {
     let url = `${todoAPI}/${id}`;
-    console.log('tttttttttt');
     await axios({url:url, 
       method: 'delete',
       mode: 'cors',
@@ -110,7 +83,7 @@ const useAjax = ()=>{
 
   useEffect(_getTodoItems, [setList]);
 
-  return [_addItem, _toggleComplete, list, setList, deleteItem,editItem,prevPage,nextPage,screen,next];
+  return [_addItem, _toggleComplete, list, setList, deleteItem,editItem];
 }
 
 export default useAjax;
