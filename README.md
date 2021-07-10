@@ -23,4 +23,4 @@
 ## Deploy
 ![netlyfy](https://gallant-turing-c8af29.netlify.app/)
 ![lab 32](https://60e7125cd498ec30e6d4fa9b--modest-noether-ab1d73.netlify.app/)
-![lab 33](https://60e7125cd498ec30e6d4fa9b--modest-noether-ab1d73.netlify.app/)
+![lab 33]()
